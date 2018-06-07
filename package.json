@@ -1,0 +1,25 @@
+{
+  "name": "vue-flip-countdown",
+  "version": "0.1.0",
+  "description": "A simple flip countdown timer component for Vue.js 2.x",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/philipjkim/vue-flip-countdown.git"
+  },
+  "keywords": [
+    "countdown",
+    "timer",
+    "vue"
+  ],
+  "author": "Soo Philip Jason Kim",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/philipjkim/vue-flip-countdown/issues"
+  },
+  "homepage": "https://github.com/philipjkim/vue-flip-countdown#readme",
+  "devDependencies": {
+    "less": "^3.0.4",
+    "less-loader": "^4.1.0"
+  }
+}
