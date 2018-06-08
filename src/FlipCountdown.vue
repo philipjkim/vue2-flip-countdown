@@ -132,10 +132,6 @@ export default {
         d.previous = d.current
         d.current = val
 
-        if (!document) {
-          return
-        }
-
         const el = document.querySelector(`#${d.elementId}`)
         if (el) {
           el.classList.remove('flip')
