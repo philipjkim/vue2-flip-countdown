@@ -38,25 +38,25 @@ export default {
           current: 0,
           previous: 0,
           label: 'Days',
-          elementId: 'days'
+          elementId: 'flip-card-days'
         },
         {
           current: 0,
           previous: 0,
           label: 'Hours',
-          elementId: 'hours'
+          elementId: 'flip-card-hours'
         },
         {
           current: 0,
           previous: 0,
           label: 'Minutes',
-          elementId: 'minutes'
+          elementId: 'flip-card-minutes'
         },
         {
           current: 0,
           previous: 0,
           label: 'Seconds',
-          elementId: 'seconds'
+          elementId: 'flip-card-seconds'
         }
       ]
     }
@@ -131,6 +131,10 @@ export default {
       if (val !== d.current) {
         d.previous = d.current
         d.current = val
+
+        if (!document) {
+          return
+        }
 
         const el = document.querySelector(`#${d.elementId}`)
         if (el) {
