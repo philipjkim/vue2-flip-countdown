@@ -1,12 +1,13 @@
-# vue-flip-countdown
+# vue2-flip-countdown
 
-A simple flip countdown timer component for Vue.js 2.x
+A simple flip countdown timer component for Vue 2.x
+
+![screenshot](https://raw.githubusercontent.com/philipjkim/vue2-flip-countdown/master/screnshot.png "vue2-flip-countdown")
 
 ## Installation
 
 ```
-# not working yet
-npm i vue-flip-countdown --save
+npm i vue2-flip-countdown --save
 ```
 
 ## Usage
@@ -19,7 +20,7 @@ npm i vue-flip-countdown --save
 </template>
 
 <script>
-  import FlipCountdown from 'vue-flip-countdown'
+  import FlipCountdown from 'vue2-flip-countdown'
 
   export default {
       components: { FlipCountdown }

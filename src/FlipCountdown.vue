@@ -16,7 +16,9 @@
 
 <script>
 let interval = null
+
 export default {
+  name: 'flipCountdown',
   props: {
     deadline: {
       type: String
@@ -202,12 +204,12 @@ export default {
   height: @halfHeight;
   color: #cca900;
   background: #222;
-  padding: 0.23em 0.25em 0.4em;
+  padding: 0.23em 0.15em 0.4em;
   border-radius: @borderRadius @borderRadius 0 0;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   transform-style: preserve-3d;
-  width: 1.7em;
+  width: 2.1em;
   height: @halfHeight;
 }
 
