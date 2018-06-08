@@ -2,7 +2,7 @@
   "name": "vue-flip-countdown",
   "version": "0.1.0",
   "description": "A simple flip countdown timer component for Vue.js 2.x",
-  "main": "index.js",
+  "main": "dist/vue-flip-countdown.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/philipjkim/vue-flip-countdown.git"
@@ -18,8 +18,32 @@
     "url": "https://github.com/philipjkim/vue-flip-countdown/issues"
   },
   "homepage": "https://github.com/philipjkim/vue-flip-countdown#readme",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development webpack --progress --watch",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "prepare": "npm run build"
+  },
   "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.7.0",
+    "cross-env": "^5.1.6",
+    "css-loader": "^0.28.11",
+    "eslint": "^4.19.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-loader": "^2.0.0",
+    "eslint-plugin-html": "^4.0.3",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0",
     "less": "^3.0.4",
-    "less-loader": "^4.1.0"
+    "less-loader": "^4.1.0",
+    "uglifyjs-webpack-plugin": "^1.2.5",
+    "vue-loader": "^14.2.3",
+    "vue-style-loader": "^4.1.0",
+    "vue-template-compiler": "^2.5.16",
+    "webpack": "^3.12.0"
   }
 }
