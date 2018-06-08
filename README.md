@@ -4,6 +4,8 @@ A simple flip countdown timer component for Vue 2.x
 
 ![screenshot](https://github.com/philipjkim/vue2-flip-countdown/blob/master/screenshot.png?raw=true)
 
+[Demo](https://philipjkim.github.io/vue2-flip-countdown/index.html)
+
 ## Installation
 
 ```
