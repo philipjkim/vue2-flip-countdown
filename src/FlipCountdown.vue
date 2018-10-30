@@ -25,6 +25,18 @@ export default {
     },
     stop: {
       type: Boolean
+    },
+    labels: {
+      type: Object,
+      required: false,
+      default: function () {
+        return {
+          days: 'Days',
+          hours: 'Hours',
+          minutes: 'Minutes',
+          seconds: 'Seconds'
+        }
+      }
     }
   },
   data () {
@@ -37,25 +49,25 @@ export default {
         {
           current: 0,
           previous: 0,
-          label: 'Days',
+          label: this.labels.days,
           elementId: 'flip-card-days'
         },
         {
           current: 0,
           previous: 0,
-          label: 'Hours',
+          label: this.labels.hours,
           elementId: 'flip-card-hours'
         },
         {
           current: 0,
           previous: 0,
-          label: 'Minutes',
+          label: this.labels.minutes,
           elementId: 'flip-card-minutes'
         },
         {
           current: 0,
           previous: 0,
-          label: 'Seconds',
+          label: this.labels.seconds,
           elementId: 'flip-card-seconds'
         }
       ]
@@ -167,7 +179,7 @@ export default {
 .flip-clock__piece {
   display: inline-block;
   margin: 0 0.2vw;
-  
+
   @media (min-width: 1000px) {
     margin: 0 5px;
   }
