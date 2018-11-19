@@ -16,6 +16,7 @@
 
 <script>
 let interval = null
+const uuidv4 = require('uuid/v4')
 
 export default {
   name: 'flipCountdown',
@@ -40,6 +41,7 @@ export default {
     }
   },
   data () {
+    const uuid = uuidv4()
     return {
       now: Math.trunc(new Date().getTime() / 1000),
       date: null,
@@ -50,25 +52,25 @@ export default {
           current: 0,
           previous: 0,
           label: this.labels.days,
-          elementId: 'flip-card-days'
+          elementId: 'flip-card-days-' + uuid
         },
         {
           current: 0,
           previous: 0,
           label: this.labels.hours,
-          elementId: 'flip-card-hours'
+          elementId: 'flip-card-hours-' + uuid
         },
         {
           current: 0,
           previous: 0,
           label: this.labels.minutes,
-          elementId: 'flip-card-minutes'
+          elementId: 'flip-card-minutes-' + uuid
         },
         {
           current: 0,
           previous: 0,
           label: this.labels.seconds,
-          elementId: 'flip-card-seconds'
+          elementId: 'flip-card-seconds-' + uuid
         }
       ]
     }

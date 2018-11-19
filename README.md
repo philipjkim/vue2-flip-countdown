@@ -30,6 +30,8 @@ npm i vue2-flip-countdown --save
 </script>
 ```
 
+Please refer to `/demo` directory for examples.
+
 If you're using [Nuxt.js](https://nuxtjs.org/), use [`<no-ssr>`](https://nuxtjs.org/api/components-no-ssr#the-lt-no-ssr-gt-component) to avoid server-side rendering. (You will get error if you don't use `<no-ssr>`)
 
 ```vue
