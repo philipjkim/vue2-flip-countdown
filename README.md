@@ -1,5 +1,7 @@
 # vue2-flip-countdown
 
+[![npm version](https://badge.fury.io/js/vue2-flip-countdown.svg)](https://badge.fury.io/js/vue2-flip-countdown) [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
+
 A simple flip countdown timer component for Vue 2.x
 
 ![screenshot](https://github.com/philipjkim/vue2-flip-countdown/blob/master/screenshot.png?raw=true)
