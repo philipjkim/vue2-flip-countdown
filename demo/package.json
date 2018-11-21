@@ -4,10 +4,11 @@
   "private": true,
   "scripts": {
     "serve": "vue serve src/main.js",
-    "build": "vue-cli-service build",
+    "build": "vue build src/main.js",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "moment": "^2.22.2",
     "vue": "^2.5.17",
     "vue2-flip-countdown": "^0.2.1"
   },

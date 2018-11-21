@@ -45,6 +45,7 @@ export default {
     return {
       now: Math.trunc(new Date().getTime() / 1000),
       date: null,
+      interval: null,
       diff: 0,
       show: false,
       timeData: [
@@ -84,7 +85,7 @@ export default {
     if (!this.date) {
       throw new Error("Invalid props value, correct the 'deadline'")
     }
-    interval = setInterval(() => {
+    this.interval = setInterval(() => {
       this.now = Math.trunc(new Date().getTime() / 1000)
     }, 1000)
   },
@@ -112,7 +113,8 @@ export default {
       this.diff = this.date - this.now
       if (this.diff <= 0 || this.stop) {
         this.diff = 0
-        clearInterval(interval)
+        this.updateTime(3, 0)
+        clearInterval(this.interval)
       } else {
         this.updateTime(0, this.days)
         this.updateTime(1, this.hours)

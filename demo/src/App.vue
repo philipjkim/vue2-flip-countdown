@@ -1,9 +1,11 @@
 <template>
   <div id="app">
-    <p>Deadline: {{ deadline }}</p>
-    <flip-countdown :deadline="deadline"></flip-countdown>
-    <p>Another deadline: {{ deadline2 }}</p>
+    <p>Deadline1: {{ deadline1 }}</p>
+    <flip-countdown :deadline="deadline1"></flip-countdown>
+    <p>Deadline2: {{ deadline2 }}</p>
     <flip-countdown :deadline="deadline2"></flip-countdown>
+    <p>Deadline3: {{ deadline3 }}</p>
+    <flip-countdown :deadline="deadline3"></flip-countdown>
     <div class="more">
       <a href="https://github.com/philipjkim/vue2-flip-countdown">Click here to view more on vue2-flip-countdown</a>
     </div>
@@ -12,6 +14,7 @@
 
 <script>
 import FlipCountdown from 'vue2-flip-countdown'
+import moment from 'moment'
 
 export default {
   name: 'app',
@@ -19,9 +22,12 @@ export default {
     FlipCountdown
   },
   data () {
+    const now = moment()
+    const fmt = 'YYYY-MM-DD HH:mm:ss'
     return {
-      deadline: '2019-12-25 00:00:00',
-      deadline2: '2019-12-31 11:11:11',
+      deadline1: now.add(10, 's').format(fmt),
+      deadline2: now.add(10, 's').format(fmt),
+      deadline3: now.add(10, 's').format(fmt)
     }
   }
 }
