@@ -29,10 +29,10 @@ module.exports = {
   output: {
     path: path.join(__dirname, '/dist/'),
     filename: 'vue2-flip-countdown.js',
-
     libraryTarget: 'umd',
     library: 'vue2-flip-countdown',
-    umdNamedDefine: true
+    umdNamedDefine: true,
+    globalObject: 'typeof self !== \'undefined\' ? self : this'
   },
   optimization: optimizationConf,
   module: {
