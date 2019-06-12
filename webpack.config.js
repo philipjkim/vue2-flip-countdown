@@ -1,40 +1,19 @@
-// config for webpack 4.x
+// config for webpack v3
 
+const webpack = require('webpack')
 const path = require('path')
-const { VueLoaderPlugin } = require('vue-loader')
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const PROD = process.env.NODE_ENV === 'production'
-const MODE = PROD ? 'production' : 'development'
-const optimizationConf = PROD ? {
-  minimizer: [
-    new UglifyJSPlugin({
-      uglifyOptions: {
-        warning: 'verbose',
-        ecma: 6,
-        beautify: false,
-        compress: false,
-        comments: false,
-        mangle: false,
-        toplevel: false,
-        keep_classnames: true,
-        keep_fnames: true
-      }
-    })
-  ]
-} : {}
 
 module.exports = {
-  mode: MODE,
   entry: path.join(__dirname, '/src/FlipCountdown.vue'),
   output: {
     path: path.join(__dirname, '/dist/'),
     filename: 'vue2-flip-countdown.js',
+
     libraryTarget: 'umd',
     library: 'vue2-flip-countdown',
-    umdNamedDefine: true,
-    globalObject: 'typeof self !== \'undefined\' ? self : this'
+    umdNamedDefine: true
   },
-  optimization: optimizationConf,
   module: {
     rules: [
       {
@@ -45,21 +24,21 @@ module.exports = {
             js: {
               loader: 'babel-loader',
               options: { presets: ['env'] }
-            }
+            },
+            less: 'vue-style-loader!css-loader!less-loader'
           }
         }
-      },
-      {
-        test: /\.less$/,
-        use: [
-          'vue-style-loader',
-          'css-loader',
-          'less-loader'
-        ]
       }
     ]
   },
-  plugins: [
-    new VueLoaderPlugin()
-  ]
+  plugins: PROD ? [
+    new webpack.optimize.UglifyJsPlugin({
+      minimize: !!PROD,
+      sourceMap: !PROD,
+      mangle: !!PROD,
+      compress: {
+        warnings: !PROD
+      }
+    })
+  ] : []
 }
