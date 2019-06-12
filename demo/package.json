@@ -10,7 +10,7 @@
   "dependencies": {
     "moment": "^2.24.0",
     "vue": "^2.6.6",
-    "vue2-flip-countdown": "^0.7.0"
+    "vue2-flip-countdown": "^0.7.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.7.0",
