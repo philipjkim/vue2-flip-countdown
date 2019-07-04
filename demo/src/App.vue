@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <p>Deadline1: {{ deadline1 }}</p>
+    <button v-on:click="increaseMin += 1">Extend Deadline1</button>
     <flip-countdown :deadline="deadline1"></flip-countdown>
     <p>Deadline2: {{ deadline2 }}</p>
     <flip-countdown :deadline="deadline2"></flip-countdown>
@@ -13,21 +14,29 @@
 </template>
 
 <script>
-import FlipCountdown from 'vue2-flip-countdown'
-import moment from 'moment'
+import FlipCountdown from "vue2-flip-countdown"
+import moment from "moment"
+
+const fmt = "YYYY-MM-DD HH:mm:ss"
+const now = moment()
 
 export default {
-  name: 'app',
+  name: "app",
   components: {
     FlipCountdown
   },
-  data () {
-    const now = moment()
-    const fmt = 'YYYY-MM-DD HH:mm:ss'
+  data() {
     return {
-      deadline1: now.add(10, 's').format(fmt),
-      deadline2: now.add(10, 's').format(fmt),
-      deadline3: now.add(10, 's').format(fmt)
+      increaseMin: 1,
+      deadline2: now.add(10, "s").format(fmt),
+      deadline3: now.add(10, "s").format(fmt)
+    }
+  },
+  computed: {
+    deadline1: function () {
+      return moment()
+        .add(this.increaseMin, "m")
+        .format(fmt)
     }
   }
 }
@@ -35,7 +44,7 @@ export default {
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

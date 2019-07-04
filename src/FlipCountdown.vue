@@ -1,25 +1,41 @@
 <template>
-    <div class="container flip-clock">
-        <template v-for="data in timeData" v-show="show">
-            <span v-bind:key="data.label" class="flip-clock__piece" :id="data.elementId">
-                <span class="flip-clock__card flip-card">
-                <b class="flip-card__top">{{data.current | twoDigits}}</b>
-                <b class="flip-card__bottom" v-bind:data-value="data.current | twoDigits"></b>
-                <b class="flip-card__back" v-bind:data-value="data.previous | twoDigits"></b>
-                <b class="flip-card__back-bottom" v-bind:data-value="data.previous | twoDigits"></b>
-                </span>
-                <span class="flip-clock__slot">{{data.label}}</span>
-            </span>
-        </template>
-    </div>
+  <div class="container flip-clock">
+    <template
+      v-for="data in timeData"
+      v-show="show"
+    >
+      <span
+        v-bind:key="data.label"
+        class="flip-clock__piece"
+        :id="data.elementId"
+      >
+        <span class="flip-clock__card flip-card">
+          <b class="flip-card__top">{{data.current | twoDigits}}</b>
+          <b
+            class="flip-card__bottom"
+            v-bind:data-value="data.current | twoDigits"
+          ></b>
+          <b
+            class="flip-card__back"
+            v-bind:data-value="data.previous | twoDigits"
+          ></b>
+          <b
+            class="flip-card__back-bottom"
+            v-bind:data-value="data.previous | twoDigits"
+          ></b>
+        </span>
+        <span class="flip-clock__slot">{{data.label}}</span>
+      </span>
+    </template>
+  </div>
 </template>
 
 <script>
 let interval = null
-const uuidv4 = require('uuid/v4')
+const uuidv4 = require("uuid/v4")
 
 export default {
-  name: 'flipCountdown',
+  name: "flipCountdown",
   props: {
     deadline: {
       type: String
@@ -32,15 +48,15 @@ export default {
       required: false,
       default: function () {
         return {
-          days: 'Days',
-          hours: 'Hours',
-          minutes: 'Minutes',
-          seconds: 'Seconds'
+          days: "Days",
+          hours: "Hours",
+          minutes: "Minutes",
+          seconds: "Seconds"
         }
       }
     }
   },
-  data () {
+  data() {
     const uuid = uuidv4()
     return {
       now: Math.trunc(new Date().getTime() / 1000),
@@ -53,35 +69,35 @@ export default {
           current: 0,
           previous: 0,
           label: this.labels.days,
-          elementId: 'flip-card-days-' + uuid
+          elementId: "flip-card-days-" + uuid
         },
         {
           current: 0,
           previous: 0,
           label: this.labels.hours,
-          elementId: 'flip-card-hours-' + uuid
+          elementId: "flip-card-hours-" + uuid
         },
         {
           current: 0,
           previous: 0,
           label: this.labels.minutes,
-          elementId: 'flip-card-minutes-' + uuid
+          elementId: "flip-card-minutes-" + uuid
         },
         {
           current: 0,
           previous: 0,
           label: this.labels.seconds,
-          elementId: 'flip-card-seconds-' + uuid
+          elementId: "flip-card-seconds-" + uuid
         }
       ]
     }
   },
-  created () {
+  created() {
     if (!this.deadline) {
       throw new Error("Missing props 'deadline'")
     }
     const endTime = this.deadline
-    this.date = Math.trunc(Date.parse(endTime.replace(/-/g, '/')) / 1000)
+    this.date = Math.trunc(Date.parse(endTime.replace(/-/g, "/")) / 1000)
     if (!this.date) {
       throw new Error("Invalid props value, correct the 'deadline'")
     }
@@ -89,27 +105,34 @@ export default {
       this.now = Math.trunc(new Date().getTime() / 1000)
     }, 1000)
   },
-  mounted () {
+  mounted() {
     if (this.diff !== 0) {
       this.show = true
     }
   },
   computed: {
-    seconds () {
+    seconds() {
       return Math.trunc(this.diff) % 60
     },
-    minutes () {
+    minutes() {
       return Math.trunc(this.diff / 60) % 60
     },
-    hours () {
+    hours() {
       return Math.trunc(this.diff / 60 / 60) % 24
     },
-    days () {
+    days() {
       return Math.trunc(this.diff / 60 / 60 / 24)
     }
   },
   watch: {
-    now (value) {
+    deadline: function (newVal, oldVal) {
+      const endTime = this.deadline
+      this.date = Math.trunc(Date.parse(endTime.replace(/-/g, "/")) / 1000)
+      if (!this.date) {
+        throw new Error("Invalid props value, correct the 'deadline'")
+      }
+    },
+    now(value) {
       this.diff = this.date - this.now
       if (this.diff <= 0 || this.stop) {
         this.diff = 0
@@ -124,25 +147,25 @@ export default {
     }
   },
   filters: {
-    twoDigits (value) {
+    twoDigits(value) {
       if (value.toString().length <= 1) {
-        return '0' + value.toString()
+        return "0" + value.toString()
       }
       return value.toString()
     }
   },
   methods: {
-    updateTime (idx, newValue) {
+    updateTime(idx, newValue) {
       if (idx >= this.timeData.length || newValue === undefined) {
         return
       }
 
-      if (window['requestAnimationFrame']) {
+      if (window["requestAnimationFrame"]) {
         this.frame = requestAnimationFrame(this.updateTime.bind(this))
       }
 
       const d = this.timeData[idx]
-      const val = (newValue < 0 ? 0 : newValue)
+      const val = newValue < 0 ? 0 : newValue
 
       if (val !== d.current) {
         d.previous = d.current
@@ -150,19 +173,19 @@ export default {
 
         const el = document.querySelector(`#${d.elementId}`)
         if (el) {
-          el.classList.remove('flip')
+          el.classList.remove("flip")
           void el.offsetWidth
-          el.classList.add('flip')
+          el.classList.add("flip")
         }
       }
     }
   },
-  beforeDestroy () {
-    if (window['cancelAnimationFrame']) {
+  beforeDestroy() {
+    if (window["cancelAnimationFrame"]) {
       cancelAnimationFrame(this.frame)
     }
   },
-  destroyed () {
+  destroyed() {
     clearInterval(interval)
   }
 }
@@ -176,9 +199,10 @@ export default {
 
   *,
   *:before,
-  *:after { box-sizing: border-box; }
+  *:after {
+    box-sizing: border-box;
+  }
 }
-
 
 .flip-clock__piece {
   display: inline-block;
@@ -207,8 +231,12 @@ export default {
 }
 
 @media (min-width: 1000px) {
-  .flip-clock__slot { font-size: 1.2rem; }
-  .flip-card { font-size: 3rem; }
+  .flip-clock__slot {
+    font-size: 1.2rem;
+  }
+  .flip-card {
+    font-size: 3rem;
+  }
 }
 
 .flip-card__top,
@@ -275,7 +303,7 @@ export default {
 
 .flip .flip-card__back::before {
   z-index: 1;
-  animation: flipTop 0.3s cubic-bezier(.37,.01,.94,.35);
+  animation: flipTop 0.3s cubic-bezier(0.37, 0.01, 0.94, 0.35);
   animation-fill-mode: both;
   transform-origin: center bottom;
 }
@@ -283,7 +311,7 @@ export default {
 .flip .flip-card__bottom {
   transform-origin: center top;
   animation-fill-mode: both;
-  animation: flipBottom 0.6s cubic-bezier(.15,.45,.28,1);
+  animation: flipBottom 0.6s cubic-bezier(0.15, 0.45, 0.28, 1);
 }
 
 @keyframes flipTop {
@@ -291,7 +319,8 @@ export default {
     transform: rotateX(0deg);
     z-index: 2;
   }
-  0%, 99% {
+  0%,
+  99% {
     opacity: 1;
   }
   100% {
@@ -301,7 +330,8 @@ export default {
 }
 
 @keyframes flipBottom {
-  0%, 50% {
+  0%,
+  50% {
     z-index: -1;
     transform: rotateX(90deg);
     opacity: 0;
