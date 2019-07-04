@@ -137,7 +137,6 @@ export default {
       if (this.diff <= 0 || this.stop) {
         this.diff = 0
         this.updateTime(3, 0)
-        clearInterval(this.interval)
       } else {
         this.updateTime(0, this.days)
         this.updateTime(1, this.hours)

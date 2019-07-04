@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <p>Deadline1: {{ deadline1 }}</p>
-    <button v-on:click="increaseMin += 1">Extend Deadline1</button>
+    <button v-on:click="deadline1ts += 10000">Extend Deadline1</button>
     <flip-countdown :deadline="deadline1"></flip-countdown>
     <p>Deadline2: {{ deadline2 }}</p>
     <flip-countdown :deadline="deadline2"></flip-countdown>
@@ -18,7 +18,6 @@ import FlipCountdown from "vue2-flip-countdown"
 import moment from "moment"
 
 const fmt = "YYYY-MM-DD HH:mm:ss"
-const now = moment()
 
 export default {
   name: "app",
@@ -27,16 +26,14 @@ export default {
   },
   data() {
     return {
-      increaseMin: 1,
-      deadline2: now.add(10, "s").format(fmt),
-      deadline3: now.add(10, "s").format(fmt)
+      deadline1ts: moment().valueOf(),
+      deadline2: moment().add(30, "s").format(fmt),
+      deadline3: moment().add(1, "m").format(fmt)
     }
   },
   computed: {
     deadline1: function () {
-      return moment()
-        .add(this.increaseMin, "m")
-        .format(fmt)
+      return moment(this.deadline1ts).format(fmt)
     }
   }
 }
