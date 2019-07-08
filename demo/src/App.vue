@@ -28,7 +28,7 @@ export default {
     return {
       deadline1ts: moment().valueOf(),
       deadline2: moment().add(30, "s").format(fmt),
-      deadline3: moment().add(1, "m").format(fmt)
+      deadline3: moment().add(1000, "d").add(10, "s").format(fmt)
     }
   },
   computed: {

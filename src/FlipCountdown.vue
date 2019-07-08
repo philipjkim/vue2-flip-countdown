@@ -165,18 +165,41 @@ export default {
 
       const d = this.timeData[idx]
       const val = newValue < 0 ? 0 : newValue
+      const el = document.querySelector(`#${d.elementId}`)
 
       if (val !== d.current) {
         d.previous = d.current
         d.current = val
 
-        const el = document.querySelector(`#${d.elementId}`)
         if (el) {
           el.classList.remove("flip")
           void el.offsetWidth
           el.classList.add("flip")
         }
+
+        if (idx === 0) {
+          const els = el.querySelectorAll('span b')
+          if (els) {
+            for (let e of els) {
+              const cls = e.classList[0]
+              if (newValue / 1000 >= 1) {
+                if (!cls.includes('-4digits')) {
+                  const newCls = cls + '-4digits'
+                  e.classList.add(newCls)
+                  e.classList.remove(cls)
+                }
+              } else {
+                if (cls.includes('-4digits')) {
+                  const newCls = cls.replace('-4digits', '')
+                  e.classList.add(newCls)
+                  e.classList.remove(cls)
+                }
+              }
+            }
+          }
+        }
       }
+
     }
   },
   beforeDestroy() {
@@ -256,8 +279,28 @@ export default {
   height: @halfHeight;
 }
 
+.flip-card__top-4digits,
+.flip-card__bottom-4digits,
+.flip-card__back-bottom-4digits,
+.flip-card__back-4digits::before,
+.flip-card__back-4digits::after {
+  display: block;
+  height: @halfHeight;
+  color: #cca900;
+  background: #222;
+  padding: 0.23em 0.15em 0.4em;
+  border-radius: @borderRadius @borderRadius 0 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
+  width: 2.65em;
+  height: @halfHeight;
+}
+
 .flip-card__bottom,
-.flip-card__back-bottom {
+.flip-card__back-bottom,
+.flip-card__bottom-4digits,
+.flip-card__back-bottom-4digits {
   color: #ffdc00;
   position: absolute;
   top: 50%;
@@ -270,23 +313,30 @@ export default {
   z-index: 2;
 }
 
-.flip-card__back-bottom {
+.flip-card__back-bottom,
+.flip-card__back-bottom-4digits {
   z-index: 1;
 }
 
 .flip-card__bottom::after,
-.flip-card__back-bottom::after {
+.flip-card__back-bottom::after,
+.flip-card__bottom-4digits::after,
+.flip-card__back-bottom-4digits::after {
   display: block;
   margin-top: -@halfHeight;
 }
 
 .flip-card__back::before,
 .flip-card__bottom::after,
-.flip-card__back-bottom::after {
+.flip-card__back-bottom::after,
+.flip-card__back-4digits::before,
+.flip-card__bottom-4digits::after,
+.flip-card__back-bottom-4digits::after {
   content: attr(data-value);
 }
 
-.flip-card__back {
+.flip-card__back,
+.flip-card__back-4digits {
   position: absolute;
   top: 0;
   height: 100%;
@@ -294,20 +344,23 @@ export default {
   pointer-events: none;
 }
 
-.flip-card__back::before {
+.flip-card__back::before,
+.flip-card__back-4digits::before {
   position: relative;
   overflow: hidden;
   z-index: -1;
 }
 
-.flip .flip-card__back::before {
+.flip .flip-card__back::before,
+.flip .flip-card__back-4digits::before {
   z-index: 1;
   animation: flipTop 0.3s cubic-bezier(0.37, 0.01, 0.94, 0.35);
   animation-fill-mode: both;
   transform-origin: center bottom;
 }
 
-.flip .flip-card__bottom {
+.flip .flip-card__bottom,
+.flip .flip-card__bottom-4digits {
   transform-origin: center top;
   animation-fill-mode: both;
   animation: flipBottom 0.6s cubic-bezier(0.15, 0.45, 0.28, 1);
