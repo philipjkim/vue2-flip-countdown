@@ -14,6 +14,16 @@ A simple flip countdown timer component for Vue 2.x
 npm i vue2-flip-countdown --save
 ```
 
+### Running Demo on Local Machine
+
+```
+cd demo
+npm i
+npm run serve
+```
+
+Then open <http://localhost:8080> on a browser.
+
 ## Usage
 
 ```vue

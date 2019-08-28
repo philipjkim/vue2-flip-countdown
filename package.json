@@ -1,6 +1,6 @@
 {
   "name": "vue2-flip-countdown",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "description": "A simple flip countdown timer component for Vue 2.x",
   "main": "dist/vue2-flip-countdown.js",
   "repository": {
