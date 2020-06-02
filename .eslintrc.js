@@ -1,21 +1,38 @@
 module.exports = {
   root: true,
-  parser: 'babel-eslint',
+  parserOptions: {
+    parser: 'babel-eslint',
+  },
   env: {
     browser: true,
-    node: true,
-    jest: true
+    jest: true,
+    es6: true,
   },
-  extends: [
-    'standard',
-    'plugin:vue/recommended'
-  ],
-  // required to lint *.vue files
-  plugins: [
-    'html',
-    'jest'
-  ],
-  // add your custom rules here
-  rules: {},
-  globals: {}
-}
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.vue'],
+      },
+    },
+    'import/extensions': ['.js', '.jsx', '.vue'],
+  },
+  extends: ['airbnb-base', 'plugin:vue/recommended', 'prettier', 'prettier/vue'],
+
+  plugins: ['vue'],
+
+  rules: {
+    // allow debugger during development
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'no-console': ['error', { allow: ['warn', 'error'] }],
+    'no-plusplus': 'off',
+    'no-underscore-dangle': 'off',
+    'no-param-reassign': 'off',
+    'no-restricted-globals': 'off',
+    'import/prefer-default-export': 'off',
+    'import/no-unresolved': [2, { ignore: ['vue2-datepicker'] }],
+    'import/no-extraneous-dependencies': 'off',
+    'vue/require-default-prop': 'off',
+    'vue/require-prop-types': 'off',
+    'vue/no-v-html': 'off',
+  },
+};

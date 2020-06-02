@@ -42,6 +42,12 @@ Then open <http://localhost:8080> on a browser.
 </script>
 ```
 
+If you want to remove days section, set `showDays` prop to `false` (available since v0.10.0):
+
+```vue
+<flip-countdown deadline="2018-12-25 00:00:00" :showDays="false"></flip-countdown>
+```
+
 Please refer to `/demo` directory for examples.
 
 If you're using [Nuxt.js](https://nuxtjs.org/), use [`<no-ssr>`](https://nuxtjs.org/api/components-no-ssr#the-lt-no-ssr-gt-component) to avoid server-side rendering. (You will get error if you don't use `<no-ssr>`)

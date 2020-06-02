@@ -1,63 +1,52 @@
 <template>
   <div class="container flip-clock">
-    <template
-      v-for="data in timeData"
-      v-show="show"
-    >
-      <span
-        v-bind:key="data.label"
-        class="flip-clock__piece"
-        :id="data.elementId"
-      >
+    <template v-for="data in timeData" v-show="show">
+      <span v-bind:key="data.label" class="flip-clock__piece" :id="data.elementId" v-show="data.show">
         <span class="flip-clock__card flip-card">
-          <b class="flip-card__top">{{data.current | twoDigits}}</b>
-          <b
-            class="flip-card__bottom"
-            v-bind:data-value="data.current | twoDigits"
-          ></b>
-          <b
-            class="flip-card__back"
-            v-bind:data-value="data.previous | twoDigits"
-          ></b>
-          <b
-            class="flip-card__back-bottom"
-            v-bind:data-value="data.previous | twoDigits"
-          ></b>
+          <b class="flip-card__top">{{ data.current | twoDigits }}</b>
+          <b class="flip-card__bottom" v-bind:data-value="data.current | twoDigits"></b>
+          <b class="flip-card__back" v-bind:data-value="data.previous | twoDigits"></b>
+          <b class="flip-card__back-bottom" v-bind:data-value="data.previous | twoDigits"></b>
         </span>
-        <span class="flip-clock__slot">{{data.label}}</span>
+        <span class="flip-clock__slot">{{ data.label }}</span>
       </span>
     </template>
   </div>
 </template>
 
 <script>
-let interval = null
-const uuidv4 = require("uuid/v4")
+let interval = null;
+const uuidv4 = require('uuid/v4');
 
 export default {
-  name: "flipCountdown",
+  name: 'flipCountdown',
   props: {
     deadline: {
-      type: String
+      type: String,
     },
     stop: {
-      type: Boolean
+      type: Boolean,
+    },
+    showDays: {
+      type: Boolean,
+      required: false,
+      default: true,
     },
     labels: {
       type: Object,
       required: false,
-      default: function () {
+      default: function() {
         return {
-          days: "Days",
-          hours: "Hours",
-          minutes: "Minutes",
-          seconds: "Seconds"
-        }
-      }
-    }
+          days: 'Days',
+          hours: 'Hours',
+          minutes: 'Minutes',
+          seconds: 'Seconds',
+        };
+      },
+    },
   },
   data() {
-    const uuid = uuidv4()
+    const uuid = uuidv4();
     return {
       now: Math.trunc(new Date().getTime() / 1000),
       date: null,
@@ -69,148 +58,151 @@ export default {
           current: 0,
           previous: 0,
           label: this.labels.days,
-          elementId: "flip-card-days-" + uuid
+          elementId: 'flip-card-days-' + uuid,
+          show: this.showDays,
         },
         {
           current: 0,
           previous: 0,
           label: this.labels.hours,
-          elementId: "flip-card-hours-" + uuid
+          elementId: 'flip-card-hours-' + uuid,
+          show: true,
         },
         {
           current: 0,
           previous: 0,
           label: this.labels.minutes,
-          elementId: "flip-card-minutes-" + uuid
+          elementId: 'flip-card-minutes-' + uuid,
+          show: true,
         },
         {
           current: 0,
           previous: 0,
           label: this.labels.seconds,
-          elementId: "flip-card-seconds-" + uuid
-        }
-      ]
-    }
+          elementId: 'flip-card-seconds-' + uuid,
+          show: true,
+        },
+      ],
+    };
   },
   created() {
     if (!this.deadline) {
-      throw new Error("Missing props 'deadline'")
+      throw new Error("Missing props 'deadline'");
     }
-    const endTime = this.deadline
-    this.date = Math.trunc(Date.parse(endTime.replace(/-/g, "/")) / 1000)
+    const endTime = this.deadline;
+    this.date = Math.trunc(Date.parse(endTime.replace(/-/g, '/')) / 1000);
     if (!this.date) {
-      throw new Error("Invalid props value, correct the 'deadline'")
+      throw new Error("Invalid props value, correct the 'deadline'");
     }
     this.interval = setInterval(() => {
-      this.now = Math.trunc(new Date().getTime() / 1000)
-    }, 1000)
+      this.now = Math.trunc(new Date().getTime() / 1000);
+    }, 1000);
   },
   mounted() {
     if (this.diff !== 0) {
-      this.show = true
+      this.show = true;
     }
   },
   computed: {
     seconds() {
-      return Math.trunc(this.diff) % 60
+      return Math.trunc(this.diff) % 60;
     },
     minutes() {
-      return Math.trunc(this.diff / 60) % 60
+      return Math.trunc(this.diff / 60) % 60;
     },
     hours() {
-      return Math.trunc(this.diff / 60 / 60) % 24
+      return Math.trunc(this.diff / 60 / 60) % 24;
     },
     days() {
-      return Math.trunc(this.diff / 60 / 60 / 24)
-    }
+      return Math.trunc(this.diff / 60 / 60 / 24);
+    },
   },
   watch: {
-    deadline: function (newVal, oldVal) {
-      const endTime = this.deadline
-      this.date = Math.trunc(Date.parse(endTime.replace(/-/g, "/")) / 1000)
+    deadline: function(newVal, oldVal) {
+      const endTime = this.deadline;
+      this.date = Math.trunc(Date.parse(endTime.replace(/-/g, '/')) / 1000);
       if (!this.date) {
-        throw new Error("Invalid props value, correct the 'deadline'")
+        throw new Error("Invalid props value, correct the 'deadline'");
       }
     },
     now(value) {
-      this.diff = this.date - this.now
+      this.diff = this.date - this.now;
       if (this.diff <= 0 || this.stop) {
-        this.diff = 0
-        this.updateTime(3, 0)
+        this.diff = 0;
+        this.updateTime(3, 0);
       } else {
-        this.updateTime(0, this.days)
-        this.updateTime(1, this.hours)
-        this.updateTime(2, this.minutes)
-        this.updateTime(3, this.seconds)
+        this.updateTime(0, this.days);
+        this.updateTime(1, this.hours);
+        this.updateTime(2, this.minutes);
+        this.updateTime(3, this.seconds);
       }
-    }
+    },
   },
   filters: {
     twoDigits(value) {
       if (value.toString().length <= 1) {
-        return "0" + value.toString()
+        return '0' + value.toString();
       }
-      return value.toString()
-    }
+      return value.toString();
+    },
   },
   methods: {
     updateTime(idx, newValue) {
       if (idx >= this.timeData.length || newValue === undefined) {
-        return
+        return;
       }
 
-      if (window["requestAnimationFrame"]) {
-        this.frame = requestAnimationFrame(this.updateTime.bind(this))
+      if (window['requestAnimationFrame']) {
+        this.frame = requestAnimationFrame(this.updateTime.bind(this));
       }
 
-      const d = this.timeData[idx]
-      const val = newValue < 0 ? 0 : newValue
-      const el = document.querySelector(`#${d.elementId}`)
+      const d = this.timeData[idx];
+      const val = newValue < 0 ? 0 : newValue;
+      const el = document.querySelector(`#${d.elementId}`);
 
       if (val !== d.current) {
-        d.previous = d.current
-        d.current = val
+        d.previous = d.current;
+        d.current = val;
 
         if (el) {
-          el.classList.remove("flip")
-          void el.offsetWidth
-          el.classList.add("flip")
+          el.classList.remove('flip');
+          void el.offsetWidth;
+          el.classList.add('flip');
         }
 
         if (idx === 0) {
-          const els = el.querySelectorAll('span b')
+          const els = el.querySelectorAll('span b');
           if (els) {
             for (let e of els) {
-              const cls = e.classList[0]
+              const cls = e.classList[0];
               if (newValue / 1000 >= 1) {
                 if (!cls.includes('-4digits')) {
-                  const newCls = cls + '-4digits'
-                  e.classList.add(newCls)
-                  e.classList.remove(cls)
+                  const newCls = cls + '-4digits';
+                  e.classList.add(newCls);
+                  e.classList.remove(cls);
                 }
               } else {
                 if (cls.includes('-4digits')) {
-                  const newCls = cls.replace('-4digits', '')
-                  e.classList.add(newCls)
-                  e.classList.remove(cls)
+                  const newCls = cls.replace('-4digits', '');
+                  e.classList.add(newCls);
+                  e.classList.remove(cls);
                 }
               }
             }
           }
         }
       }
-
-    }
+    },
   },
   beforeDestroy() {
-    if (window["cancelAnimationFrame"]) {
-      cancelAnimationFrame(this.frame)
+    if (window['cancelAnimationFrame']) {
+      cancelAnimationFrame(this.frame);
     }
   },
   destroyed() {
-    clearInterval(interval)
-  }
-}
+    clearInterval(interval);
+  },
+};
 </script>
 
 <style scoped lang="less">
