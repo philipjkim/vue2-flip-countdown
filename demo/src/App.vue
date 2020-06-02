@@ -60,4 +60,8 @@ export default {
 .more {
   margin: 30px 0;
 }
+
+button {
+  margin: 10px;
+}
 </style>
