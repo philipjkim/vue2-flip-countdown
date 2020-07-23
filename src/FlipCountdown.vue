@@ -137,6 +137,11 @@ export default {
         this.updateTime(3, this.seconds);
       }
     },
+    diff(value) {
+      if (value === 0) {
+        this.$emit('timeElapsed');
+      }
+    },
   },
   filters: {
     twoDigits(value) {
