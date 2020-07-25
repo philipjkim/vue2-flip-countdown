@@ -140,6 +140,10 @@ export default {
     diff(value) {
       if (value === 0) {
         this.$emit('timeElapsed');
+        this.updateTime(0, this.days);
+        this.updateTime(1, this.hours);
+        this.updateTime(2, this.minutes);
+        this.updateTime(3, this.seconds);
       }
     },
   },
