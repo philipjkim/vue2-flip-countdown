@@ -51,7 +51,7 @@ If you want to remove days section, set `showDays` prop to `false` (available si
 To notify if timer has elapsed, bind a handler to `timeElapsed` event emitted by component
 
 ```vue
-<flip-countdown @timeElapsed="timeElapsedHandler"></flip-countdown>
+<flip-countdown deadline="2018-12-25 00:00:00" @timeElapsed="timeElapsedHandler"></flip-countdown>
 ```
 
 Please refer to `/demo` directory for examples.
