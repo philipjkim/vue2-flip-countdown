@@ -131,19 +131,13 @@ export default {
         this.diff = 0;
         this.updateTime(3, 0);
       } else {
-        this.updateTime(0, this.days);
-        this.updateTime(1, this.hours);
-        this.updateTime(2, this.minutes);
-        this.updateTime(3, this.seconds);
+        this.updateAllCards();
       }
     },
     diff(value) {
       if (value === 0) {
         this.$emit('timeElapsed');
-        this.updateTime(0, this.days);
-        this.updateTime(1, this.hours);
-        this.updateTime(2, this.minutes);
-        this.updateTime(3, this.seconds);
+        this.updateAllCards();
       }
     },
   },
@@ -156,6 +150,12 @@ export default {
     },
   },
   methods: {
+    updateAllCards() {
+      this.updateTime(0, this.days);
+      this.updateTime(1, this.hours);
+      this.updateTime(2, this.minutes);
+      this.updateTime(3, this.seconds);
+    },
     updateTime(idx, newValue) {
       if (idx >= this.timeData.length || newValue === undefined) {
         return;
