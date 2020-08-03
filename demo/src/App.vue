@@ -11,6 +11,7 @@
     <flip-countdown :deadline="deadline2"></flip-countdown>
     <p>Deadline3: {{ deadline3 }}</p>
     <flip-countdown :deadline="deadline3"></flip-countdown>
+    <button v-on:click="deadline3 = '2018-12-25 00:00:00'">Set Deadline3 to previous date</button>
     <div class="more">
       <a href="https://github.com/philipjkim/vue2-flip-countdown">Click here to view more on vue2-flip-countdown</a>
     </div>
