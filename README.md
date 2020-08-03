@@ -37,7 +37,7 @@ Then open <http://localhost:8080> on a browser.
   import FlipCountdown from 'vue2-flip-countdown'
 
   export default {
-      components: { FlipCountdown }
+    components: { FlipCountdown }
   }
 </script>
 ```
@@ -46,6 +46,12 @@ If you want to remove days section, set `showDays` prop to `false` (available si
 
 ```vue
 <flip-countdown deadline="2018-12-25 00:00:00" :showDays="false"></flip-countdown>
+```
+
+To notify if timer has elapsed, bind a handler to `timeElapsed` event emitted by component
+
+```vue
+<flip-countdown deadline="2018-12-25 00:00:00" @timeElapsed="timeElapsedHandler"></flip-countdown>
 ```
 
 Please refer to `/demo` directory for examples.

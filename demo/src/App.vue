@@ -5,6 +5,7 @@
     <flip-countdown
       :deadline="deadline1"
       :showDays="false"
+      @timeElapsed="timeElapsedHandler"
     ></flip-countdown>
     <p>Deadline2: {{ deadline2 }}</p>
     <flip-countdown :deadline="deadline2"></flip-countdown>
@@ -44,6 +45,11 @@ export default {
       return moment(this.deadline1ts).format(fmt);
     },
   },
+  methods: {
+    timeElapsedHandler: function () {
+      console.warn('Count Down Elapsed!!!')
+    }
+  }
 };
 </script>
 
