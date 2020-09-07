@@ -32,6 +32,21 @@ export default {
       required: false,
       default: true,
     },
+    showHours: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
+    showMinutes: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
+    showSeconds: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
     labels: {
       type: Object,
       required: false,
@@ -66,21 +81,21 @@ export default {
           previous: 0,
           label: this.labels.hours,
           elementId: 'flip-card-hours-' + uuid,
-          show: true,
+          show: this.showHours,
         },
         {
           current: 0,
           previous: 0,
           label: this.labels.minutes,
           elementId: 'flip-card-minutes-' + uuid,
-          show: true,
+          show: this.showMinutes,
         },
         {
           current: 0,
           previous: 0,
           label: this.labels.seconds,
           elementId: 'flip-card-seconds-' + uuid,
-          show: true,
+          show: this.showSeconds,
         },
       ],
     };

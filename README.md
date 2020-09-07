@@ -43,6 +43,10 @@ Then open <http://localhost:8080> on a browser.
 ```
 
 If you want to remove days section, set `showDays` prop to `false` (available since v0.10.0):
+If you want to remove hours section, set `showHours` prop to `false` (available since v0.11.0):
+If you want to remove minutes section, set `showMinutes` prop to `false` (available since v0.11.0):
+If you want to remove seconds section, set `showSeconds` prop to `false` (available since v0.11.0):
+
 
 ```vue
 <flip-countdown deadline="2018-12-25 00:00:00" :showDays="false"></flip-countdown>

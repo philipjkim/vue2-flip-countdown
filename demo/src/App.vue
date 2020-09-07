@@ -1,17 +1,37 @@
 <template>
   <div id="app">
-    <p>Deadline1: {{ deadline1 }} (showDays = false)</p>
-    <button v-on:click="deadline1ts += 10000">Extend Deadline1</button>
+
+    <h3>Deadline1: {{ deadline1 }} (showDays = false)</h3>
     <flip-countdown
       :deadline="deadline1"
       :showDays="false"
       @timeElapsed="timeElapsedHandler"
     ></flip-countdown>
-    <p>Deadline2: {{ deadline2 }}</p>
+    <button v-on:click="deadline1ts += 10000">Extend Deadline1</button>
+
+    <h3>Deadline2: {{ deadline2 }}</h3>
     <flip-countdown :deadline="deadline2"></flip-countdown>
-    <p>Deadline3: {{ deadline3 }}</p>
+
+    <h3>Deadline3: {{ deadline3 }}</h3>
     <flip-countdown :deadline="deadline3"></flip-countdown>
     <button v-on:click="deadline3 = '2018-12-25 00:00:00'">Set Deadline3 to previous date</button>
+
+    <h3>Deadline4: {{ deadline4 }} (showDays = false, showHours = false)</h3>
+    <flip-countdown
+      :deadline="deadline4"
+      :showDays="false"
+      :showHours="false"
+      @timeElapsed="timeElapsedHandler"
+    ></flip-countdown>
+
+    <h3>Deadline5: {{ deadline5 }} (showDays = false, showSeconds = false)</h3>
+    <flip-countdown
+      :deadline="deadline5"
+      :showDays="false"
+      :showSeconds="false"
+      @timeElapsed="timeElapsedHandler"
+    ></flip-countdown>
+
     <div class="more">
       <a href="https://github.com/philipjkim/vue2-flip-countdown">Click here to view more on vue2-flip-countdown</a>
     </div>
@@ -39,6 +59,12 @@ export default {
         .add(1000, "d")
         .add(10, "s")
         .format(fmt),
+      deadline4: moment()
+        .add(2, "h")
+        .format(fmt),
+      deadline5: moment()
+        .add(24, "h")
+        .format(fmt),
     };
   },
   computed: {
@@ -48,7 +74,7 @@ export default {
   },
   methods: {
     timeElapsedHandler: function () {
-      console.warn('Count Down Elapsed!!!')
+      // console.warn('Count Down Elapsed!!!')
     }
   }
 };
