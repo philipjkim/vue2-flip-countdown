@@ -42,21 +42,18 @@ Then open <http://localhost:8080> on a browser.
 </script>
 ```
 
-If you want to remove days section, set `showDays` prop to `false` (available since v0.10.0):
-If you want to remove hours section, set `showHours` prop to `false` (available since v0.11.0):
-If you want to remove minutes section, set `showMinutes` prop to `false` (available since v0.11.0):
-If you want to remove seconds section, set `showSeconds` prop to `false` (available since v0.11.0):
+- If you want to remove days section, set `showDays` prop to `false` (available since v0.10.0)
+- If you want to remove hours/minutes/seconds section, set `showHours`/`showMinutes`/`showSeconds` prop to `false` (available since v0.11.0)
 
+    ```vue
+    <flip-countdown deadline="2018-12-25 00:00:00" :showDays="false"></flip-countdown>
+    ```
 
-```vue
-<flip-countdown deadline="2018-12-25 00:00:00" :showDays="false"></flip-countdown>
-```
+- To notify if timer has elapsed, bind a handler to `timeElapsed` event emitted by component
 
-To notify if timer has elapsed, bind a handler to `timeElapsed` event emitted by component
-
-```vue
-<flip-countdown deadline="2018-12-25 00:00:00" @timeElapsed="timeElapsedHandler"></flip-countdown>
-```
+    ```vue
+    <flip-countdown deadline="2018-12-25 00:00:00" @timeElapsed="timeElapsedHandler"></flip-countdown>
+    ```
 
 Please refer to `/demo` directory for examples.
 
