@@ -15,7 +15,6 @@
 </template>
 
 <script>
-let interval = null;
 const uuidv4 = require('uuid/v4');
 
 export default {
@@ -224,7 +223,7 @@ export default {
     }
   },
   destroyed() {
-    clearInterval(interval);
+    clearInterval(this.interval);
   },
 };
 </script>
