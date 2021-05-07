@@ -16,7 +16,7 @@
     "@vue/cli-plugin-babel": "^3.7.0",
     "@vue/cli-plugin-eslint": "^3.7.0",
     "@vue/cli-service": "^3.7.0",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "lodash.defaultsdeep": ">=4.6.1",
     "vue-template-compiler": "^2.6.10"
   },
