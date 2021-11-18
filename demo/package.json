@@ -10,12 +10,12 @@
   "dependencies": {
     "moment": "^2.24.0",
     "vue": "^2.6.6",
-    "vue2-flip-countdown": "^0.11.2"
+    "vue2-flip-countdown": "^0.12.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.7.0",
-    "@vue/cli-plugin-eslint": "^3.7.0",
-    "@vue/cli-service": "^3.7.0",
+    "@vue/cli-plugin-babel": "^3.3.0",
+    "@vue/cli-plugin-eslint": "^4.5.15",
+    "@vue/cli-service": "^4.5.15",
     "lodash": "^4.17.21",
     "lodash.defaultsdeep": ">=4.6.1",
     "vue-template-compiler": "^2.6.10"
