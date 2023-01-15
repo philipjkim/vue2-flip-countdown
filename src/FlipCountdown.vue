@@ -411,7 +411,7 @@ export default {
     0%,
     50% {
         z-index: -1;
-        transform: rotateX(90deg);
+        transform: rotateX(90deg) translateZ(0px);
         opacity: 0;
     }
 
@@ -421,7 +421,7 @@ export default {
 
     100% {
         opacity: 1;
-        transform: rotateX(0deg);
+        transform: rotateX(0deg) translateZ(1px);
         z-index: 5;
     }
 }
