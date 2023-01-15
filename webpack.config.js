@@ -2,6 +2,8 @@
 
 const webpack = require('webpack')
 const path = require('path')
+const TerserPlugin = require("terser-webpack-plugin")
+const { VueLoaderPlugin } = require('vue-loader');
 const PROD = process.env.NODE_ENV === 'production'
 
 module.exports = {
@@ -28,17 +30,25 @@ module.exports = {
             less: 'vue-style-loader!css-loader!less-loader'
           }
         }
-      }
+      },
+      {
+        test: /\.less$/i,
+        use: [
+          // compiles Less to CSS
+          "vue-style-loader",
+          "css-loader",
+          "less-loader",
+        ],
+      },
     ]
   },
-  plugins: PROD ? [
-    new webpack.optimize.UglifyJsPlugin({
-      minimize: !!PROD,
-      sourceMap: !PROD,
-      mangle: !!PROD,
-      compress: {
-        warnings: !PROD
-      }
-    })
-  ] : []
+  optimization: PROD ? {
+    minimize: true,
+    minimizer: [new TerserPlugin()],
+  } : {
+    minimize: false
+  },
+  plugins: [
+    new VueLoaderPlugin()
+  ]
 }
