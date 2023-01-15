@@ -10,12 +10,21 @@
   "dependencies": {
     "moment": "^2.29.4",
     "vue": "^2.6.6",
-    "vue2-flip-countdown": "^0.12.1"
+    "vue2-flip-countdown": "^1.0.0",
+    "@babel/eslint-parser": "^7.19.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.3.0",
+    "@vue/cli-plugin-babel": "^5.0.8",
     "@vue/cli-plugin-eslint": "^5.0.8",
     "@vue/cli-service": "^5.0.8",
+    "eslint": "^8.32.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-import": "^2.27.4",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-react": "^7.32.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "lodash": "^4.17.21",
     "lodash.defaultsdeep": ">=4.6.1",
     "vue-template-compiler": "^2.6.10"
@@ -31,7 +40,7 @@
     ],
     "rules": {},
     "parserOptions": {
-      "parser": "babel-eslint"
+      "parser": "@babel/eslint-parser"
     }
   },
   "postcss": {

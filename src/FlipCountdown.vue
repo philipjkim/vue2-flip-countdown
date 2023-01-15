@@ -1,7 +1,7 @@
 <template>
 <div class="container flip-clock">
     <template v-for="data in timeData" v-show="show">
-        <span v-bind:key="data.label" class="flip-clock__piece" :id="data.elementId" v-show="data.show">
+        <span v-if="data !== null" v-bind:key="data.label" class="flip-clock__piece" :id="data.elementId" v-show="data.show">
             <span class="flip-clock__card flip-card" :style="countdownSize ? `font-size:${countdownSize}` : ''">
                 <b class="flip-card__top">{{ data.current | twoDigits }}</b>
                 <b class="flip-card__bottom" v-bind:data-value="data.current | twoDigits"></b>

@@ -8,6 +8,11 @@ A simple flip countdown timer component for Vue 2.x
 
 [Demo](https://philipjkim.github.io/vue2-flip-countdown/index.html)
 
+## Notes on v1.0.0+
+
+`1.x.x` versions are based on Webpack 5.x, whereas `0.x.x` versions are based on Webpack 3.x. 
+If you have any trouble when upgrading to `1.x.x`, please roll back version to `0.x.x`. 
+
 ## Installation
 
 ```

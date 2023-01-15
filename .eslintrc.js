@@ -1,8 +1,6 @@
 module.exports = {
   root: true,
-  parserOptions: {
-    parser: 'babel-eslint',
-  },
+  parser: '@babel/eslint-parser',
   env: {
     browser: true,
     jest: true,
@@ -16,7 +14,11 @@ module.exports = {
     },
     'import/extensions': ['.js', '.jsx', '.vue'],
   },
-  extends: ['airbnb-base', 'plugin:vue/recommended', 'prettier', 'prettier/vue'],
+  extends: [
+    'airbnb-base',
+    'plugin:vue/recommended',
+    'prettier',
+  ],
 
   plugins: ['vue'],
 
